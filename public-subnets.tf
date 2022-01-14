@@ -1,5 +1,5 @@
 locals {
-  # az_names    = data.aws_availability_zones.azs.names
+  az_names    = data.aws_availability_zones.azs.names
   pub_sub_ids = aws_subnet.demo_public_subnet.*.id
 
 }

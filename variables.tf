@@ -10,18 +10,36 @@ variable "tenancy" {
   default = "default"
 }
 
-variable "nat_amis" {
-  type        = string
-  description = "Used for nat instances"
-  default     = "ami-08e4e35cccc6189f4"
-  #AMI Region must match
+variable "web_amis" {
+  type        = map
+  description = "Used for web instances"
+  default     = {
+    us-east-1 = "ami-08e4e35cccc6189f4"
+    us-east-2 = "ami-001089eb624938d9f"
+    #AMI Region must match with region
+    }
 }
 
-variable "nat_instance_type" {
+variable "web_instance_type" {
   type        = string
-  description = "Used for nat instances types"
+  description = "Used for web instances types"
   default     = "t2.micro"
 }
+
+variable "web_instance_count" {
+  type        = string
+  description = "Number of instances"
+  default     = "2"
+}
+
+variable "web_instance_tag" {
+ type        = map
+  description = "Used for web instances names"
+  default     = {
+      Name = "webserver"
+  }
+}
+
 
 
 variable "subnet_cidr_block" {

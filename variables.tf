@@ -40,6 +40,10 @@ variable "web_instance_tag" {
   }
 }
 
+variable "s3_bucket" {
+  type = string 
+  default = "demo-s3-bucket-12345"
+}
 
 
 variable "subnet_cidr_block" {

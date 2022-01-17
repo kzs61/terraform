@@ -20,8 +20,7 @@ resource "aws_instance" "web" {
 }
 
 resource "aws_security_group" "web_sg" {
-    name = "web_sg"
-    description = "Allow traffic"
+    name = "web_sg"adding elb
     vpc_id = aws_vpc.demo_vpc.id
 
     ingress {

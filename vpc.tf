@@ -1,6 +1,7 @@
 locals {
   vpc_name = terraform.workspace == "dev" ? "vpc-dev" : "vpc-prod"
 }
+
 resource "aws_vpc" "demo_vpc" {
   # count = terraform.workspace == "dev" ? 0 : 1
   cidr_block       = var.cidr_block

@@ -1,7 +1,7 @@
 resource "aws_elb" "elb" {
   name               = "demo-elb-${terraform.workspace}"
   subnets = local.pub_sub_ids
-  security_groups = [aws_security_group.web_sg.id]
+  security_groups = [aws_security_group.elb_sg.id]
 
 
   listener {
@@ -10,7 +10,6 @@ resource "aws_elb" "elb" {
     lb_port           = 80
     lb_protocol       = "http"
   }
-
 
   health_check {
     healthy_threshold   = 2
@@ -30,3 +29,29 @@ resource "aws_elb" "elb" {
     Name = "demo-elb"
   }
 }
+
+# ELB Security security Group 
+resource "aws_security_group" "elb_sg" {
+    name = "elb_sg"
+    description = "Allow traffic through ELB"
+    vpc_id = aws_vpc.demo_vpc.id
+
+    ingress {
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+        from_port = 80
+        to_port = 80
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    tags = {
+        Name = "elb_sg-${terraform.workspace}"
+    }
+}
+

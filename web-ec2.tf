@@ -11,9 +11,12 @@ resource "aws_instance" "web" {
     count = var.web_instance_count
     subnet_id = local.pub_sub_ids[count.index]
     iam_instance_profile = aws_iam_instance_profile.s3_ec2_profile.name
-    user_data = file("scripts/apache.sh")
     vpc_security_group_ids = [aws_security_group.web_sg.id]
+    user_data = file("scripts/apache.sh")
+    key_name = aws_key_pair.web.key_name
+        
     tags = local.web_tags 
+
 }
 
 resource "aws_security_group" "web_sg" {
@@ -47,11 +50,11 @@ resource "aws_security_group" "web_sg" {
     }
 }
 
-# resource "aws_key_pair" "web" {
-#     key_name = "sharks-web"
-#     public_key = file("scripts/web.pub")
+resource "aws_key_pair" "web" {
+    key_name = "demo-web"
+    public_key = file("scripts/web.pub")
   
-# }
+}
 
 #ssh-keygen -f web
 

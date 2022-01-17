@@ -3,7 +3,6 @@ locals {
         Environment = terraform.workspace
     }
     web_tags = merge(var.web_instance_tag, local.env_tag)
-
 }
 
 resource "aws_instance" "web" {
@@ -22,7 +21,6 @@ resource "aws_instance" "web" {
 
 resource "aws_security_group" "web_sg" {
     name = "web_sg"
-    description = "Allow traffic"
     vpc_id = aws_vpc.demo_vpc.id
 
     ingress {

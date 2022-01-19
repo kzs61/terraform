@@ -78,7 +78,7 @@ jobs:
       env:
         TF_WORKSPACE: dev 
 
-      - name: Terraform apply in prod
+    - name: Terraform apply in prod
       if: github.ref == 'refs/heads/master' && github.event_name == 'pull_request'
       run: terraform apply --auto-approve 
       continue-on-error: true 
@@ -90,4 +90,4 @@ jobs:
       run: terraform destroy --auto-approve 
       continue-on-error: true 
       env:
-        TF_WORKSPACE: dev
+        TF_WORKSPACE: dev         

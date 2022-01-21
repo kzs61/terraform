@@ -4,6 +4,13 @@ resource "aws_lb" "elb" {
   security_groups = [aws_security_group.elb_sg.id]
   load_balancer_type = "application"
 
+
+  access_logs {
+    bucket = var.alb_access_log_s3_bucket
+    enabled = true
+  }
+    
+
   # access_logs {
   #   bucket = "demo-alb-access-logs-bucket12345"
   #   enabled = true
@@ -74,3 +81,4 @@ count = var.web_instance_count
   target_id        = aws_instance.web.*.id[count.index]
   port             = 80
 }
+

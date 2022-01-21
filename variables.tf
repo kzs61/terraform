@@ -51,3 +51,9 @@ variable "subnet_cidr_block" {
   description = "Used for public subnets"
   default     = "10.0.1.0/24"
 }
+
+
+variable "alb_access_log_s3_bucket" {
+  type = string 
+  default = "demo-alb-access-logs-bucket"
+}

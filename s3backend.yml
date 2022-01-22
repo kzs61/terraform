@@ -14,4 +14,4 @@
     s3_bucket:
       name: demo-terra-backend-file
       state: present
-      region: us-east-2
+      region: us-east-1
